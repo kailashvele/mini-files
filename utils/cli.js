@@ -4,7 +4,7 @@ const meowHelp = require('cli-meow-help');
 const flags = {
 	clear: {
 		type: `boolean`,
-		default: true,
+		default: false,
 		alias: `c`,
 		desc: `Clear the console`
 	},
@@ -23,11 +23,23 @@ const flags = {
 		type: `boolean`,
 		alias: `v`,
 		desc: `Print CLI version`
+	},
+	inputDir: {
+		type: `string`,
+		alias: `iD`,
+		desc: `Input Directory`
+	},
+	outputDir: {
+		type: `string`,
+		alias: `oD`,
+		default: `MinifiedImages`,
+		desc: `Output Directory`
 	}
 };
 
 const commands = {
-	help: { desc: `Print help info` }
+	help: { desc: `Print help info` },
+	compress: { desc: `Compress images and convert images to webp` }
 };
 
 const helpText = meowHelp({
