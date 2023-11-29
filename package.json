@@ -1,7 +1,7 @@
 {
 	"name": "mini-files",
 	"description": "To help optimize or convert images recursively",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"license": "MIT",
 	"bin": {
 		"mini-files": "index.js",
