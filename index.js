@@ -22,11 +22,11 @@ const replicate = require('./lib/replicate');
 
 (async () => {
 	init({ clear });
-	input.includes(`help`) && cli.showHelp(0);
+	input.includes('help') && cli.showHelp(0);
 
 	debug && log(flags);
 
-	if (input.includes(`compress`)) {
+	if (input.includes('compress')) {
 		if (!flags.inputDir) {
 			console.log(
 				`${chalk.bgMagenta(`Please provide Input directory! \n\n`)}`
@@ -46,7 +46,49 @@ const replicate = require('./lib/replicate');
 			);
 
 			if (files.length) {
-				compress(files);
+				const {
+					totalCompressedSizeMB,
+					timeTaken,
+					uncompressedTotalSizeMB,
+					compressionPercentage
+				} = await compress(files);
+
+				console.log(
+					`${chalk.green.bold(
+						'✔'
+					)} Processing completed! Total files processed: ${chalk.blue.bold(
+						files.length
+					)}`
+				);
+				console.log(
+					`${chalk.green.bold(
+						'✔'
+					)} Total size of uncompressed files: ${chalk.blue.bold(
+						uncompressedTotalSizeMB.toFixed(2)
+					)} ${chalk.blue('MB')}`
+				);
+				console.log(
+					`${chalk.green.bold(
+						'✔'
+					)} Total size of compressed files: ${chalk.blue.bold(
+						totalCompressedSizeMB.toFixed(2)
+					)} ${chalk.blue('MB')}`
+				);
+				console.log(
+					`${chalk.green.bold(
+						'✔'
+					)} Compression in percentage: ${chalk.blue.bold(
+						compressionPercentage.toFixed(2)
+					)}%`
+				);
+
+				console.log(
+					`${chalk.green.bold(
+						'✔'
+					)} Time taken for compression: ${chalk.blue.bold(
+						timeTaken.toFixed(2)
+					)} ${chalk.blue('seconds')}`
+				);
 			}
 		}
 	}
