@@ -19,7 +19,8 @@
 	"files": [
 		"index.js",
 		"utils",
-		"lib"
+		"lib",
+		"config.js"
 	],
 	"scripts": {
 		"format": "prettier --write \"./**/*.{js,json}\""
